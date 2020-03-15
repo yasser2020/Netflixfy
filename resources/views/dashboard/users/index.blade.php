@@ -18,13 +18,30 @@
               <input type="text"class="form-control" name="search" autofocus placeholder="Search" value="{{request()->search}}">
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <select name="role_id" class="form-control">
+                  <option value="">All Roles</option>
+                  @foreach ($roles as $role)
+                <option value="{{$role->name}}" {{request()->role_id == $role->id ? 'selected':''}}>{{$role->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
 
             <div class="col-md-4">
               <div class="form-group">
                 <button class="btn btn-primary" type="submit"><i class="fa fa-search"> Search</i></button>
-              <a href="{{route('dashboard.users.create')}}" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                @if (auth()->user()->hasPermission('create_users'))
+                <a href="{{route('dashboard.users.create')}}" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                 @else 
+                 <a href="" disabled="" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+
+                @endif
               </div>
             </div>
+
+            
        </div><!-- end of row -->
        
 
@@ -61,13 +78,20 @@
                          @endforeach
                        </td>
                        <td>
-        
-                       <a href="{{route('dashboard.users.edit',$user->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
+                 @if (auth()->user()->hasPermission())
+                 <a href="{{route('dashboard.users.edit',$user->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
+                   @else 
+                   <a href="" disabled="" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
+                 @endif
                        
                        <form action="{{route('dashboard.users.destroy',$user->id)}}" style="display:inline-block" method="post">
                       @csrf
                       @method('delete')
+                      @if (auth()->user()->hasPermission('delete_users'))
                       <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"> Delete</i></button>
+                      @else 
+                      <button type="submit" disabled class="btn btn-danger btn-sm delete"><i class="fa fa-trash"> Delete</i></button>
+                      @endif
                       </form>
                     
                        </td>

@@ -2,7 +2,7 @@
 
 Route::prefix('dashboard')
 ->name('dashboard.')->
-middleware(['auth','role:super_admin|admin'])->
+middleware(['auth','role:super_admin|administrator'])->
 group(function(){
     //welcome route
      Route::get('/','welcomeController@index')->name('welcome');

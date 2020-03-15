@@ -7,6 +7,8 @@
   <li class="breadcrumb-item"><a href="{{route('dashboard.categories.index')}}">Categories</a></li>
   <li class="breadcrumb-item active">Add Category</li>
 
+
+
   </ol>
 </nav> 
 <div class="tile">
