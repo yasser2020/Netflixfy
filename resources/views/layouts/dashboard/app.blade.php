@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="{{asset('dashboard_files/plugins/noty.css')}}">
   <script src="{{asset('dashboard_files/js/main.js')}}"></script>
   <script src="{{asset('dashboard_files/plugins/noty.min.js')}}"></script>
+  {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" /> --}}
+
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -53,6 +55,8 @@
   <script src="{{asset('dashboard_files/js/jquery-3.3.1.min.js')}}"></script>
   <script src="{{asset('dashboard_files/js/popper.min.js')}}"></script>
   <script src="{{asset('dashboard_files/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('dashboard_files/plugins/select2.min.js')}}"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> --}}
   
   <script>
   $(document).ready(function(){
@@ -74,7 +78,14 @@
         });
         n.show();
    });
+
+ //.select2
+ $('.select2').select2();
+
   });
+
+  
+
   </script>
   </body>
 </html>
