@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
+use App\Movie;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    protected $withCount=['movies'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -72,6 +74,11 @@ class User extends Authenticatable
         return $query->when($role_id,function($q)use($role_id){
             return $this->scopeWhereRole($q,$role_id);
         });
+    }
+ //relations---------------------
+    public function movies(Type $var = null)
+    {
+        return $this->belongsToMany(Movie::class,'user_movie');
     }
 
     

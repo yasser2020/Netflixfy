@@ -8,14 +8,16 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+     $this->middleware('permission:read_categories')->only('index');   
+     $this->middleware('permission:create_categories')->only(['create','store']); 
+     $this->middleware('permission:update_categories')->only(['edit','update']); 
+     $this->middleware('permission:delete_categories')->only(['destory']); 
+    }
     public function index(Request $request)
     {
-        $categories=Category::whenSearch($request->search)->paginate(5);
+        $categories=Category::whenSearch($request->search)->withCount('movies')->paginate(5);
         return view('dashboard.categories.index',compact('categories'));
     }
 

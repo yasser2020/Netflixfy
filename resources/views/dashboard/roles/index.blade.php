@@ -21,11 +21,11 @@
 
             <div class="col-md-4">
               <div class="form-group">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-search"> Search</i></button>
+                <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"> Search</i></button>
                 @if (auth()->user()->hasPermission('create_roles'))
-                <a href="{{route('dashboard.roles.create')}}" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                <a href="{{route('dashboard.roles.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Add</i></a>
                 @else
-                <a href="" disabled="" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                <a href="" disabled="" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Add</i></a>
                 @endif
               </div>
             </div>
@@ -65,10 +65,10 @@
                        </td>
                        <td>{{$role->users_count}}</td>
                        <td>
-                          @if (auth()->user()->hasPermission('edit_roles'))
+                          @if (auth()->user()->hasPermission('update_roles'))
                           <a href="{{route('dashboard.roles.edit',$role->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
                      @else 
-                     <a href="" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
+                     <a href="" disabled="" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
                       @endif
                        
                        <form action="{{route('dashboard.roles.destroy',$role->id)}}" style="display:inline-block" method="post">

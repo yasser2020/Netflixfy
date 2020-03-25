@@ -1,4 +1,4 @@
-<header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+<header class="app-header"><a class="app-header__logo" href="index.html">Netflixfy</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
@@ -45,16 +45,16 @@
         </ul>
       </li> --}}
       <!-- User Menu-->
-      <li class="dropdown"><a class="app-nav__item" href="{{ route('logout') }}"
+       <li class="dropdown"><a class="app-nav__item" href="{{ route('logout') }}"
         onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();"><i class="fa fa-user fa-lg"></i> 
+                      document.getElementById('logout-form').submit();">
+                      <i class="fa fa-sign-out-alt"></i> 
                       Logout
                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                     </a>
-                    
-
       </li>
+    
     </ul>
   </header>

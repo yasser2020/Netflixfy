@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Movie;
 
 class Category extends Model
 {
@@ -18,5 +19,12 @@ class Category extends Model
        return $query->when($search,function($q)use($search){
             return $q->where('name','like',"%$search%");
        });
+   }
+
+   //relations
+
+   public function movies()
+   {
+       return $this->belongsToMany(Movie::class,'movie_category');
    }
 }

@@ -21,9 +21,9 @@
 
             <div class="col-md-4">
               <div class="form-group">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-search"> Search</i></button>
+                <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"> Search</i></button>
                 @if (auth()->user()->hasPermission('create_categories'))
-                <a href="{{route('dashboard.categories.create')}}" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                <a href="{{route('dashboard.categories.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Add</i></a>
                 @else
                 <a href="" disabled="" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
                 @endif
@@ -48,6 +48,7 @@
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>Movies</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -56,8 +57,9 @@
                     <tr>
                        <td>{{$index}}</td>
                        <td>{{$category->name}}</td>
+                       <td>{{$category->movies_count}}</td>
                        <td>
-                   @if (auth()->user()->hasPermission('edit_categories'))
+                   @if (auth()->user()->hasPermission('update_categories'))
                    <a href="{{route('dashboard.categories.edit',$category->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
                     @else
                     <a href="" disabled="" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>

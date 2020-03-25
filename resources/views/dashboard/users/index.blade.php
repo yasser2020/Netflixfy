@@ -31,11 +31,11 @@
 
             <div class="col-md-4">
               <div class="form-group">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-search"> Search</i></button>
+                <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"> Search</i></button>
                 @if (auth()->user()->hasPermission('create_users'))
-                <a href="{{route('dashboard.users.create')}}" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                <a href="{{route('dashboard.users.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Add</i></a>
                  @else 
-                 <a href="" disabled="" class="btn btn-primary"><i class="fa fa-plus"> Add</i></a>
+                 <a href="" disabled="" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Add</i></a>
 
                 @endif
               </div>
@@ -78,7 +78,7 @@
                          @endforeach
                        </td>
                        <td>
-                 @if (auth()->user()->hasPermission())
+                 @if (auth()->user()->hasPermission('update_users'))
                  <a href="{{route('dashboard.users.edit',$user->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
                    @else 
                    <a href="" disabled="" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>

@@ -6,6 +6,8 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
     <meta property="twitter:creator" content="@pratikborsadiya">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Open Graph Meta-->
     {{-- <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vali Admin">
@@ -19,16 +21,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard_files/css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('css/font-awesome5.11.2.min.css')}}">
+
   <link rel="stylesheet" href="{{asset('dashboard_files/plugins/noty.css')}}">
-  <script src="{{asset('dashboard_files/js/main.js')}}"></script>
   <script src="{{asset('dashboard_files/plugins/noty.min.js')}}"></script>
+
   {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @stack('movie_styles');
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
+  
    @include('layouts.dashboard._header')
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -53,12 +59,19 @@
     </main>
     <!-- Essential javascripts for application to work-->
   <script src="{{asset('dashboard_files/js/jquery-3.3.1.min.js')}}"></script>
+  <script src="{{asset('dashboard_files/js/plugins/select2.min.js')}}"></script>
   <script src="{{asset('dashboard_files/js/popper.min.js')}}"></script>
   <script src="{{asset('dashboard_files/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('dashboard_files/plugins/select2.min.js')}}"></script>
-  {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> --}}
-  
+  <script src="{{asset('dashboard_files/js/main.js')}}"></script>
+     {{-- Movie --}}
+     <script src="{{asset('dashboard_files/js/custom/movie.js')}}"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> --}}  
   <script>
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+    });
   $(document).ready(function(){
    $(document).on('click','.delete',function(e){
      e.preventDefault();
@@ -83,9 +96,7 @@
  $('.select2').select2();
 
   });
-
-  
-
   </script>
+ 
   </body>
 </html>

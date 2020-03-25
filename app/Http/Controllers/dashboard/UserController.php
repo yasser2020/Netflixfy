@@ -9,6 +9,13 @@ use App\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('permission:read_roles')->only('index');   
+     $this->middleware('permission:create_roles')->only(['create','store']); 
+     $this->middleware('permission:update_roles')->only(['edit','update']); 
+     $this->middleware('permission:delete_roles')->only(['destory']); 
+    }
     
     public function index(Request $request)
     {

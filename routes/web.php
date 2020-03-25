@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/','WelcomeController@index')->name('welcome');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('movies','MovieController')->only(['index','show']);
+Route::post('/movies/{movie}/increment_views','MovieController@increment_views')->name('movies.increment_views');
+Route::post('/movies/{movie}/toggle_favorite','MovieController@toggle_favorite')->name('movies.toggle_favorite');
+
+
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->where('provider','facebook|google');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->where('provider','facebook|google');
